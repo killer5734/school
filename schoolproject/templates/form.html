@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+         <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Schoolstore</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- progress barstle -->
+  <link rel="stylesheet" href="{% static 'css/css-circular-prog-bar.css' %}">
+  <!-- fonts style -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- font wesome stylesheet -->
+  <link rel="stylesheet" href="{% static 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' %}">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+
+
+
+  <link rel="stylesheet" href="{% static 'css/css-circular-prog-bar.css' %}">
+</head>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+<body>
+<h1 style="bold">Form</h1>
+            <form action="form" method="post">
+            {% csrf_token %}
+            <input type="text" name="Name" PLACEHOLDER="Enter your Name"><br>
+            <input type="date" name="DOB" PLACEHOLDER="Enter your Date of Birth"><br>
+            <input type="number" name="Age" PLACEHOLDER="Enter your Age"><br>
+            Gender:
+            <input type="radio" name="gender" value="Male">
+            Male
+            <input type="radio" name="gender" value="Female">
+            Female<br>
+            <input type="number" name="Phone No" PLACEHOLDER="Enter your Number"><br>
+            <input type="email" name="Mail ID" PLACEHOLDER="Enter your Email"><br>
+            <input type="text" name="Address" PLACEHOLDER="Enter your Address"><br>
+            <select name="Department" id="">
+                <option selected>Select your Department</option>
+                <option value="commerce">Commerce</option>
+                <option value="civil">Civil</option>
+                <option value="computer science">Computer Science</option>
+                <option value="electrical">Electrical</option>
+                <option value="mechanical">Mechanical</option>
+            </select><br>
+            <select name="Course" id="Dropdow">
+                <option selected>Select your Course</option>
+                <option value="5">BBA</option>
+                <option value="5">BCA</option>
+                <option value="5">MBA</option>
+                <option value="5">MCA</option>
+                <option value="5">B.Com</option>
+                <option value="4">Construction Engineering</option>
+                <option value="4">Environmental Engineering</option>
+                <option value="4">Geotechnical Engineering</option>
+                <option value="4">Structural Engineering</option>
+                <option value="4">Transportation Engineering</option>
+                <option value="1">C</option>
+                <option value="1">C++</option>
+                <option value="1">Python</option>
+                <option value="1">JAVA</option>
+                <option value="1">Windows</option>
+                <option value="3">Power engineering</option>
+                <option value="3">Control engineering</option>
+                <option value="3">Microelectronics</option>
+                <option value="3">Signal processing</option>
+                <option value="3">Telecommunications engineering</option>
+                <option value="2">Automation</option>
+                <option value="2">Aerospace</option>
+                <option value="2">Computer Aided Design</option>
+                <option value="2">Design</option>
+                <option value="2">Mechanics</option>
+            </select><br>
+            </form>
+            <form  method="post" id="Dropdown"   >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <select name="department" id="department" >
+                <option value="">--Select Department--</option>
+                {% for i in department %}
+                <option value="{{i.id}}">{{i.name}}</option>
+                {% endfor %}
+            </select><br>
+            <select name="courses" id="courses" >
+                <option value="">--Select Course--</option>
+                {% for course in courses %}
+                <option value="{{ course.pk }}">{{ course.name }}</option>
+                {% endfor %}
+            </select><br>
+            <script>
+                $("#id_department").change(function () {
+                    const url = $("#Dropdown").attr("data-courses-url");
+                    const department_Id = $(this).val();
+
+                    $.ajax({
+                        url: url,
+                        data: {
+                            'department_id': departmentId
+                        },
+                        success: function (data) {
+                            $("#courses").html(data);
+                        }
+                });
+            </script>
+
+            <select name="purpose" id="null">
+                <option selected>Select your Purpose</option>
+                <option value="enquiry">Enquiry</option>
+                <option value="placeorder">Place Order</option>
+                <option value="return">Return</option>
+            </select><br>
+            Materials Provided:<br>
+            <input type="checkbox" value="Note books">Note books
+            <input type="checkbox" value="Pens">Pens
+            <input type="checkbox" value="Bags">Bags
+            <input type="checkbox" value="Shoes">Shoes
+            <input type="checkbox" value="Pencils">Pencils<br>
+            <input type="submit" value="Submit">
+            </form>
+            {% for msg in messages %}
+            <h2>{{msg}}</h2>
+            {% endfor %}
+<a href="/">Home</a><br>
+</body>
+</html>
+
+

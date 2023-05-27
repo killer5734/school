@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Schoolstore</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- progress barstle -->
+  <link rel="stylesheet" href="{% static 'css/css-circular-prog-bar.css' %}">
+  <!-- fonts style -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- font wesome stylesheet -->
+  <link rel="stylesheet" href="{% static 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' %}">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+
+
+
+  <link rel="stylesheet" href="{% static 'css/css-circular-prog-bar.css' %}">
+
+
+</head>
+<body>
+<div class="top_container">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <div class="hero-container container">
+        <div class="hero_detail-box">
+          <h3>
+            Welcome to <br>
+          </h3>
+          <h1>
+            School Store
+          </h1>
+          <p>
+            Going to school???
+            You have come to the right Place!!
+            This is the place where you can get all Accessories for School.
+          </p>
+            <h1 style="bold">Login</h1>
+            <form action="login" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" PLACEHOLDER="Enter your username"><br>
+            <input type="password" name="password" PLACEHOLDER="Enter your password"><br>
+            <input type="submit"><br>
+            <a class="link" href="/register/register">
+              <span>
+                Register
+              </span>
+            </a>
+            </form>
+            {% for msg in messages %}
+            <h2>{{msg}}</h2>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </header>
+</div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+         <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Schoolstore</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- progress barstle -->
+  <link rel="stylesheet" href="{% static 'css/css-circular-prog-bar.css' %}">
+  <!-- fonts style -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- font wesome stylesheet -->
+  <link rel="stylesheet" href="{% static 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' %}">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+
+
+
+  <link rel="stylesheet" href="{% static 'css/css-circular-prog-bar.css' %}">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<script>
+var subjectObject = {
+  "Computer Science": {
+    "HTML": [""],
+    "CSS": [""],
+    "JavaScript": [""],
+    "Python": [""],
+    "Django": [""]
+  },
+  "Commerce": {
+    "B.Com": [""],
+    "BBA": [""],
+    "BCA": [""],
+    "MBA": [""],
+    "MCA": [""]
+  },
+  "Civil": {
+    "Construction Engineering": [""],
+    "Geotechnical Engineering": [""],
+    "Environmental Engineering": [""],
+    "Structural Engineering": [""],
+    "Transportation Engineering": [""]
+  },
+    "Electrical": {
+    "Control Engineering": [""],
+    "Microelectronics": [""],
+    "Power Engineering": [""],
+    "Signal processing": [""],
+    "Telecommunications Engineering": [""]
+  },
+      "Mechanical": {
+    "Aerospace": [""],
+    "Automation": [""],
+    "Computer Aided Design": [""],
+    "Design": [""],
+    "Mechanics": [""]
+  }
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+}
+</script>
+</head>
+<body>
+
+<h1 style="bold">Form</h1>
+
+<form name="form1" id="form1" action="/register/new">
+    <input type="text" name="Name" PLACEHOLDER="Enter your Name"><br>
+    <input type="date" name="DOB" PLACEHOLDER="Enter your Date of Birth"><br>
+    <input type="number" name="Age" PLACEHOLDER="Enter your Age"><br>
+    Gender:
+    <input type="radio" name="gender" value="Male">
+    Male
+    <input type="radio" name="gender" value="Female">
+    Female<br>
+    <input type="number" name="Phone No" PLACEHOLDER="Enter your Number"><br>
+    <input type="email" name="Mail ID" PLACEHOLDER="Enter your Email"><br>
+    <input type="text" name="Address" PLACEHOLDER="Enter your Address"><br>
+  <select name="subject" id="subject">
+    <option value="" selected="selected">Select Department</option>
+  </select>
+  <br>
+  <select name="topic" id="topic">
+    <option value="" selected="selected">Please select Department first</option>
+  </select>
+  <br>
+    <select name="purpose" id="purpose">
+        <option selected>Select your Purpose</option>
+        <option value="enquiry">Enquiry</option>
+        <option value="placeorder">Place Order</option>
+        <option value="return">Return</option>
+    </select><br>
+    Materials Provided:<br>
+    <input type="checkbox" value="Note books">Note books
+    <input type="checkbox" value="Pens">Pens
+    <input type="checkbox" value="Bags">Bags
+    <input type="checkbox" value="Shoes">Shoes
+    <input type="checkbox" value="Pencils">Pencils<br>
+    <input type="submit" value="Submit"><br>
+   <a href="/">Home</a><br>
+</form>
+{% for msg in messages %}
+<h2>{{msg}}</h2>
+{% endfor %}
+</body>
+</html>
